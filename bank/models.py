@@ -1,16 +1,11 @@
-from django.contrib.auth.models import User
 from django.db import models
 
 
 class BankAccount(models.Model):
-    name = models.CharField(max_length=254)
-    owner = models.ForeignKey(User, related_name='ow_accounts', on_delete=models.DO_NOTHING)
+    owner = models.CharField(max_length=254)
     balance = models.IntegerField(max_length=1000)
-
-
-class OperationManager(models.Manager):
-    def transfer_money(self, another):
-        return sum(BankAccount.balance.self.pk, BankAccount.balance.another.pk)
+    type_card = models.CharField(max_length=20)
+    currency_type = models.CharField(max_length=50)
 
 
 class MoneyTransfer(models.Model):
@@ -25,4 +20,4 @@ class MoneyTransfer(models.Model):
         on_delete=models.DO_NOTHING
     )
     comment = models.CharField(max_length=255)
-    objects = OperationManager()
+    time_now = models.TimeField(auto_now=True)
