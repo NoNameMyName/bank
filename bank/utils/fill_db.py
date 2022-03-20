@@ -22,8 +22,7 @@ def create_accounts(accounts_amount=10):
         currency_type = CURRENCY_TYPE[randint(0, 2)]
         money = MONEY
         accounts = BankAccount(owner=name, type_card=type_of_card, currency_type=currency_type, balance=money)
-        BankAccount.objects.bulk_create(accounts)
-        print(accounts)
+    BankAccount.objects.bulk_create(accounts)
 
 
 def main():
