@@ -7,7 +7,7 @@ from bank.models import BankAccount
 from bank.serializers import BankAccountSerializer
 
 
-@api_view(["GET"])
+@api_view(["GET", "POST"])
 def api_bank_accounts(request):
     if request.method == "GET":
         accounts = BankAccount.objects.all()
@@ -19,5 +19,3 @@ def api_bank_accounts(request):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
-
-

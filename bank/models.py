@@ -3,7 +3,7 @@ from django.db import models
 
 class BankAccount(models.Model):
     owner = models.CharField(max_length=254)
-    balance = models.IntegerField(max_length=1000)
+    balance = models.IntegerField()
     type_card = models.CharField(max_length=20)
     currency_type = models.CharField(max_length=50)
 

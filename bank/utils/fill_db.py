@@ -15,7 +15,6 @@ from bank.utils.constants import (
 
 def create_accounts(accounts_amount=10):
     fake = Faker()
-    accounts = dict()
     for _ in range(accounts_amount):
         name = fake.name().split()[FIRST_NAME_INDEX]
         type_of_card = TYPE_CARD[randint(0, 1)]
@@ -30,3 +29,5 @@ def main():
 
 
 main()
+
+# from bank.utils.fill_db import *

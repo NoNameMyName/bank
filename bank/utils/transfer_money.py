@@ -4,12 +4,11 @@ from bank.models import BankAccount
 
 
 def transfer(sender, receiver, change):
-    if sender.filter(currency_type="currency_type") == receiver.filter(currency_type="currency_type"):
-        try:
-            if sender.filter(balance="balance") >= change:
-                sender.objects.balance = sender.objects.balance - change
-                receiver.objects.balance = receiver.objects.balance + change
-        except:
+    if sender.currency_type == receiver.currency_type:
+        if sender.balance >= change:
+            sender.balance = sender.balance - change
+            receiver.balance = receiver.balance + change
+        else:
             raise ValueError
     else:
         raise TypeError
@@ -17,20 +16,20 @@ def transfer(sender, receiver, change):
 
 def main():
     while True:
-        sender = BankAccount.objects.filter(id=randint(1, 10))
-        receiver = BankAccount.objects.filter(id=randint(1, 10))
-        print(sender, receiver)
-        if sender.filter(id) != receiver.filter(id):
+        sender = BankAccount.objects.get(id=randint(1, 10))
+        receiver = BankAccount.objects.get(id=randint(1, 10))
+        if sender.id != receiver.id:
+            print(sender, receiver)
             break
-    print(f"Balance before transfer\nSender:{sender.objects.balance}\nReceiver:{receiver.objects.balance}")
+    print(f"Balance before transfer\nSender:{sender.balance}\nReceiver:{receiver.balance}")
     print(f"Doing transfer")
-    print(sender, receiver)
     change = randint(0, 99999)
     transfer(
-        sender=sender.filter(balance=BankAccount.balance.get_lookup()),
-        receiver=receiver.filter(balance=BankAccount.balance.get(id=5)),
+        sender=sender,
+        receiver=receiver,
         change=change
     )
+    print(f"Balance after transfer\nSender:{sender.balance}\nReceiver:{receiver.balance}")
     print(f"Accept")
 
 
