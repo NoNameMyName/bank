@@ -7,17 +7,5 @@ class BankAccount(models.Model):
     type_card = models.CharField(max_length=20)
     currency_type = models.CharField(max_length=50)
 
-
-class MoneyTransfer(models.Model):
-    sender = models.ForeignKey(
-        "BankAccount",
-        related_name='outcome_transfers',
-        on_delete=models.DO_NOTHING
-    )
-    receiver = models.ForeignKey(
-        "BankAccount",
-        related_name='income_transfers',
-        on_delete=models.DO_NOTHING
-    )
-    comment = models.CharField(max_length=255)
-    time_now = models.TimeField(auto_now=True)
+    def __str__(self):
+        return f"{self.owner, self.pk, self.currency_type, self.balance}"
