@@ -24,8 +24,10 @@ def create_accounts(accounts_amount=10):
 
 
 def main():
+    print(f"DataBase before creation accounts: {BankAccount.objects.all()}")
     print("Create accounts")
     create_accounts()
+    print(f"DataBase after creation accounts: {BankAccount.objects.all()}")
 
 
 main()

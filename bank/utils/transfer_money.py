@@ -9,8 +9,10 @@ def transfer(sender, receiver, change):
             sender.balance = sender.balance - change
             receiver.balance = receiver.balance + change
         else:
+            print(f"Not enough money to transfer")
             raise ValueError
     else:
+        print(f"Different types of currencies ")
         raise TypeError
 
 

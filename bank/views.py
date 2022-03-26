@@ -14,7 +14,7 @@ def api_bank_accounts(request):
         serializer = BankAccountSerializer(accounts, many=True)
         return Response(serializer.data)
     elif request.method == "POST":
-        serializer = BankAccountSerializer(request.data)
+        serializer = BankAccountSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
