@@ -35,6 +35,4 @@ def main():
     print(f"Accept")
 
 
-main()
-
 # from bank.utils.transfer_money import *
